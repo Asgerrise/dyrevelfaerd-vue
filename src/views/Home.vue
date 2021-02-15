@@ -25,6 +25,13 @@
       :undertitle="adoptSections[1].content"
       :image="adoptSections[1].asset.url"
     />
+    <Section :isBlue="true" headline="Tilmeld vores nyhedsbrev">
+      <p>
+        Få inspiration og nyheder om dyrevelfærd og vores arbejde, direkte i din
+        indbakke
+      </p>
+      <NewsletterForm />
+    </Section>
   </main>
   <main v-else><h1>Loading...</h1></main>
 </template>
@@ -38,6 +45,7 @@ import Section from "@/components/Section";
 import Value from "@/components/Value";
 import Card from "@/components/Card";
 import SectionImage from "@/components/SectionImage";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default {
   name: "Home",
@@ -46,7 +54,8 @@ export default {
     Section,
     Value,
     Card,
-    SectionImage
+    SectionImage,
+    NewsletterForm
   },
   setup() {
     const state = reactive({
