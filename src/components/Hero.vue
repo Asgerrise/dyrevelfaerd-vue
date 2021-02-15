@@ -5,6 +5,10 @@
       :src="kittenImg"
       alt="2 kittens looking at the camera"
     />
+    <div class="hero__wrapper">
+      <h1 class="hero__title">Foreningen for Dyrevelfærd</h1>
+      <p class="hero__undertitle">Vi specialisere os i dyrevelfærd</p>
+    </div>
   </header>
 </template>
 
@@ -37,10 +41,25 @@ export default {
 
 <style lang="scss" scoped>
 .hero {
+  color: white;
+  padding: 3.5em 0 8em;
+
   &__img {
     position: absolute;
-    top: 0;
+    top: -150px;
+    right: 0;
     z-index: -1;
+  }
+  &__wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  &__title {
+    font-size: 4em;
+    font-weight: 400;
+  }
+  &__undertitle {
+    font-size: 1.45em;
   }
 }
 </style>
