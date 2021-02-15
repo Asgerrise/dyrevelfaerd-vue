@@ -20,6 +20,11 @@
         :extra="item.extra"
       />
     </Section>
+    <SectionImage
+      :title="adoptSections[1].title"
+      :undertitle="adoptSections[1].content"
+      :image="adoptSections[1].asset.url"
+    />
   </main>
 </template>
 
@@ -31,6 +36,7 @@ import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import Value from "@/components/Value";
 import Card from "@/components/Card";
+import SectionImage from "@/components/SectionImage";
 
 export default {
   name: "Home",
@@ -38,7 +44,8 @@ export default {
     Hero,
     Section,
     Value,
-    Card
+    Card,
+    SectionImage
   },
   setup() {
     const abouts = ref(null);
@@ -55,16 +62,26 @@ export default {
         .then(response => (volunteers.value = response.data));
     };
 
+    const adoptSections = ref(null);
+    const getAdoptSections = () => {
+      axios
+        .get("http://localhost:4000/api/v1/adoptsections")
+        .then(response => (adoptSections.value = response.data));
+    };
+
     return {
       abouts,
       getAbouts,
       volunteers,
-      getVolunteers
+      getVolunteers,
+      adoptSections,
+      getAdoptSections
     };
   },
   mounted() {
     this.getAbouts();
     this.getVolunteers();
+    this.getAdoptSections();
   }
 };
 </script>

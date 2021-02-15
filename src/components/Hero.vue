@@ -1,10 +1,5 @@
 <template>
-  <header class="hero">
-    <img
-      class="hero__img"
-      :src="kittenImg"
-      alt="2 kittens looking at the camera"
-    />
+  <header class="hero" :style="{ backgroundImage: 'url(' + kittenImg + ')' }">
     <div class="hero__wrapper">
       <h1 class="hero__title">Foreningen for Dyrevelfærd</h1>
       <p class="hero__undertitle">Vi specialisere os i dyrevelfærd</p>
@@ -19,13 +14,11 @@ import { ref } from "vue";
 export default {
   name: "Hero",
   setup() {
-    const kittenImg = ref("");
-    const getKittens = async () => {
-      kittenImg.value = await axios
+    const kittenImg = ref(null);
+    const getKittens = () => {
+      axios
         .get("http://localhost:4000/api/v1/adoptsections")
-        .then(response => {
-          return response.data[0].asset.url;
-        });
+        .then(response => (kittenImg.value = response.data[0].asset.url));
     };
 
     return {
@@ -43,13 +36,9 @@ export default {
 .hero {
   color: white;
   padding: 3.5em 0 8em;
+  background-position: center;
+  background-size: cover;
 
-  &__img {
-    position: absolute;
-    top: -150px;
-    left: 0;
-    z-index: -1;
-  }
   &__wrapper {
     margin: 0 auto;
     max-width: 1200px;
