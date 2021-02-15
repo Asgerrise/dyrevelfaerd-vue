@@ -1,11 +1,24 @@
-# Foreningen for Dyrevelfaerd - opgave
+# terminsprove-asgerrise
 
-Ud over denne opgave er der udleveret et separat assignment som indeholder det api du skal hente data fra. Følg vejledningen i readme filen for api'et for at installere og køre api'et.
+## Project setup
+```
+npm install
+```
 
-Du skal ikke lave en aflevering på api-assignment, men udelukkende på dette opgave assignment. 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-* Opgavebeskrivelsen findes i den vedlagte pdf
-* Layoutet findes i den vedlagte fil "layout.jpg".
-* Foreningen for Dyrevelfærds logo er vedlagt i filen  "logo.png".
+### Compiles and minifies for production
+```
+npm run build
+```
 
-**God Arbejdslyst!**
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
