@@ -65,6 +65,11 @@ export default {
     margin-left: 1em;
     opacity: 0.5;
     white-space: nowrap;
+    transition: 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
