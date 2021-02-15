@@ -47,12 +47,15 @@ export default {
   &__img {
     position: absolute;
     top: -150px;
-    right: 0;
+    left: 0;
     z-index: -1;
   }
   &__wrapper {
     margin: 0 auto;
     max-width: 1200px;
+    @media screen and(max-width: 1200px) {
+      margin: 0 1em;
+    }
   }
   &__title {
     font-size: 4em;
