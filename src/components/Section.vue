@@ -1,7 +1,9 @@
 <template>
   <section class="section" :class="{ blue: isBlue }">
     <div class="section__wrapper">
-      <ul class="item-list"></ul>
+      <ul class="item-list">
+        <slot />
+      </ul>
     </div>
   </section>
 </template>
@@ -21,9 +23,8 @@ export default {
 
 <style lang="scss" scoped>
 .section {
-  display: flex;
-  justify-content: space-between;
   background-color: white;
+  padding: 0.7em 0 1.8em;
 
   &.blue {
     background-color: #e2edff;
@@ -31,6 +32,10 @@ export default {
   &__wrapper {
     max-width: 1200px;
     margin: 0 auto;
+  }
+  .item-list {
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>
