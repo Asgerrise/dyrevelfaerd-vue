@@ -13,11 +13,12 @@
 </template>
 
 <script>
+import { ref } from "vue";
+const axios = require("axios");
+
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import Value from "@/components/Value";
-import { ref } from "vue";
-const axios = require("axios");
 
 export default {
   name: "Home",
