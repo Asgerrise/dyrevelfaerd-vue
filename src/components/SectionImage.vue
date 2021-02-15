@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "Hero",
+  name: "SectionImage",
   props: {
     title: {
       required: true,

@@ -1,6 +1,6 @@
 <template>
   <Hero />
-  <main class="main">
+  <main class="main" v-if="!state.loading">
     <Section>
       <Value
         v-for="item in abouts"
@@ -26,10 +26,11 @@
       :image="adoptSections[1].asset.url"
     />
   </main>
+  <main v-else><h1>Loading...</h1></main>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 const axios = require("axios");
 
 import Hero from "@/components/Hero";
@@ -48,6 +49,10 @@ export default {
     SectionImage
   },
   setup() {
+    const state = reactive({
+      loading: true
+    });
+
     const abouts = ref(null);
     const getAbouts = () => {
       axios
@@ -69,19 +74,28 @@ export default {
         .then(response => (adoptSections.value = response.data));
     };
 
+    const setLoading = () => {
+      state.loading = false;
+    };
+
     return {
+      state,
       abouts,
       getAbouts,
       volunteers,
       getVolunteers,
       adoptSections,
-      getAdoptSections
+      getAdoptSections,
+      setLoading
     };
   },
-  mounted() {
+  created() {
     this.getAbouts();
     this.getVolunteers();
     this.getAdoptSections();
+  },
+  mounted() {
+    this.setLoading();
   }
 };
 </script>
