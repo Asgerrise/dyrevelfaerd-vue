@@ -53,6 +53,7 @@
         :name="item.name"
         :description="item.description"
         :age="item.age.toString()"
+        :id="item.id"
       />
     </Section>
   </main>
@@ -60,7 +61,7 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 const axios = require("axios");
 
 import Hero from "@/components/Hero";
@@ -117,9 +118,7 @@ export default {
         .then(response => (animals.value = response.data));
     };
 
-    const setLoading = () => {
-      state.loading = false;
-    };
+    watch(animals, () => (state.loading = false));
 
     return {
       state,
@@ -130,20 +129,16 @@ export default {
       adoptSections,
       getAdoptSections,
       animals,
-      getAnimals,
-      setLoading
+      getAnimals
     };
   },
   created() {
     this.getAbouts();
     this.getVolunteers();
     this.getAdoptSections();
-    this.getAnimals();
   },
   mounted() {
-    setTimeout(() => {
-      this.setLoading();
-    }, 100);
+    this.getAnimals();
   }
 };
 </script>

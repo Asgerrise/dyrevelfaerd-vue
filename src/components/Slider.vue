@@ -2,7 +2,7 @@
   <vueper-slides
     autoplay
     fixedHeight="500px"
-    visible-slides="2"
+    :visible-slides="2"
     :gap="5"
     class="no-shadow"
     :arrows="false"
