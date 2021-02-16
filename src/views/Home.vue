@@ -26,7 +26,7 @@
       :image="adoptSections[1].asset.url"
     />
     <Section :isBlue="true" headline="Tilmeld vores nyhedsbrev">
-      <p>
+      <p class="newsletter__text">
         Få inspiration og nyheder om dyrevelfærd og vores arbejde, direkte i din
         indbakke
       </p>
@@ -41,7 +41,7 @@
       headline="Dyr hos os"
       :bigHeadline="true"
       :undertitle="animals.length + ' dyr'"
-      :grid="true"
+      :gridAuto="true"
     >
       <Animal
         v-for="item in animals"
@@ -142,3 +142,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.newsletter__text {
+  flex: 1;
+}
+</style>

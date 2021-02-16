@@ -11,7 +11,7 @@
       <h3 v-if="undertitle" class="section__undertitle">
         {{ undertitle }}
       </h3>
-      <ul class="item-list" :class="{ 'item-list_grid': grid }">
+      <ul class="item-list" :class="{ 'item-list_grid-auto': gridAuto }">
         <slot />
       </ul>
     </div>
@@ -40,7 +40,7 @@ export default {
       required: false,
       type: String
     },
-    grid: {
+    gridAuto: {
       required: false,
       type: Boolean,
       default: false
@@ -81,13 +81,18 @@ export default {
     }
   }
   .item-list {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2em;
 
-    &_grid {
+    &_grid-auto {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
       gap: 3em 2em;
+
+      @media screen and(max-width: 520px) {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
     }
   }
 }

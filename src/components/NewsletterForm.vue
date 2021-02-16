@@ -26,9 +26,10 @@ export default {
 
 <style lang="scss" scoped>
 .newsletter {
-  width: 50%;
+  width: 100%;
   text-align: end;
   margin-bottom: 3em;
+  flex: 1;
 
   &__inputs {
     display: flex;

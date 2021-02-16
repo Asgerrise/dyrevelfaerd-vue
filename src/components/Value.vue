@@ -23,7 +23,6 @@ export default {
 
 <style lang="scss" scoped>
 .value {
-  width: 31%;
   &__title {
     font-size: 1.5em;
     color: #325792;

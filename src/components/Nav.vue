@@ -36,11 +36,19 @@ export default {
     @media screen and(max-width: 1200px) {
       margin: 0 1em;
     }
+    @media screen and(max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   &__logo {
     display: flex;
     text-decoration: none;
     align-items: center;
+
+    @media screen and(max-width: 700px) {
+      margin-bottom: 1em;
+    }
 
     &-img {
       margin-right: 1em;
@@ -57,6 +65,11 @@ export default {
   &__links {
     display: flex;
     align-items: center;
+
+    @media screen and(max-width: 520px) {
+      flex-direction: column;
+      margin-top: 1em;
+    }
   }
 
   &__link {
@@ -67,8 +80,19 @@ export default {
     white-space: nowrap;
     transition: 0.2s;
 
+    &:nth-of-type(1) {
+      margin-left: 0;
+    }
+
     &:hover {
       opacity: 0.8;
+    }
+
+    @media screen and(max-width: 700px) {
+      font-size: 1.4em;
+    }
+    @media screen and(max-width: 520px) {
+      margin: 0 0 1em;
     }
   }
 }
