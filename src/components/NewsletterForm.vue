@@ -28,6 +28,7 @@ export default {
 .newsletter {
   width: 50%;
   text-align: end;
+  margin-bottom: 3em;
 
   &__inputs {
     display: flex;
