@@ -25,6 +25,9 @@
       :undertitle="adoptSections[1].content"
       :image="adoptSections[1].asset.url"
     />
+    <Section :noGrid="true">
+      <Slider />
+    </Section>
     <Section :isBlue="true" headline="Tilmeld vores nyhedsbrev">
       <p class="newsletter__text">
         Få inspiration og nyheder om dyrevelfærd og vores arbejde, direkte i din
@@ -67,6 +70,7 @@ import Card from "@/components/Card";
 import SectionImage from "@/components/SectionImage";
 import NewsletterForm from "@/components/NewsletterForm";
 import Animal from "@/components/Animal";
+import Slider from "@/components/Slider.vue";
 
 export default {
   name: "Home",
@@ -77,7 +81,8 @@ export default {
     Card,
     SectionImage,
     NewsletterForm,
-    Animal
+    Animal,
+    Slider
   },
   setup() {
     const state = reactive({
