@@ -32,6 +32,11 @@
       </p>
       <NewsletterForm />
     </Section>
+    <SectionImage
+      :title="adoptSections[2].title"
+      :undertitle="adoptSections[2].content"
+      :image="adoptSections[2].asset.url"
+    />
   </main>
   <main v-else><h1>Loading...</h1></main>
 </template>
