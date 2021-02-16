@@ -49,6 +49,8 @@ export default {
   &__title {
     font-size: 4em;
     font-weight: 400;
+    line-height: 1;
+    margin-bottom: 0.2em;
   }
   &__undertitle {
     font-size: 1.45em;

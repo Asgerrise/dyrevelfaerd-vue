@@ -40,6 +40,11 @@ export default {
   display: flex;
   border: 1px solid #e3e3e6;
   border-radius: 5px;
+  overflow: hidden;
+
+  @media screen and(max-width: 600px) {
+    flex-direction: column;
+  }
 
   &__image-container {
     flex: 1;

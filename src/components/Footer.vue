@@ -66,6 +66,9 @@ export default {
     @media screen and(max-width: 1200px) {
       margin: 0 1em;
     }
+    @media screen and(max-width: 600px) {
+      flex-direction: column;
+    }
   }
   &__column {
     flex: 1;
@@ -74,6 +77,11 @@ export default {
 
     &:nth-last-of-type(1) {
       margin-right: 0;
+    }
+
+    @media screen and(max-width: 600px) {
+      margin-right: 0;
+      margin-bottom: 1.5em;
     }
   }
   &__column-title {
@@ -93,6 +101,12 @@ export default {
   .copyright {
     align-self: flex-end;
     text-align: center;
+
+    @media screen and(max-width: 600px) {
+      text-align: left;
+      align-self: flex-start;
+      order: 3;
+    }
   }
 }
 </style>

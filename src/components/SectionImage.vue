@@ -48,6 +48,8 @@ export default {
     font-size: 3.7em;
     font-weight: 400;
     text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.2em;
   }
   &__undertitle {
     font-size: 1.3em;
