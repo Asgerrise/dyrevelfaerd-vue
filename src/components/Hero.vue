@@ -1,32 +1,43 @@
 <template>
-  <header class="hero" :style="{ backgroundImage: 'url(' + kittenImg + ')' }">
+  <header
+    v-if="!state.loading"
+    class="hero"
+    :style="{ backgroundImage: 'url(' + heroData.asset.url + ')' }"
+  >
     <div class="hero__wrapper">
-      <h1 class="hero__title">Foreningen for Dyrevelfærd</h1>
-      <p class="hero__undertitle">Vi specialisere os i dyrevelfærd</p>
+      <h1 class="hero__title">{{ heroData.title }}</h1>
+      <p class="hero__undertitle">{{ heroData.content }}</p>
     </div>
   </header>
 </template>
 
 <script>
 const axios = require("axios");
-import { ref } from "vue";
+import { reactive, ref, watch } from "vue";
 
 export default {
   name: "Hero",
   setup() {
-    const kittenImg = ref(null);
+    const state = reactive({
+      loading: true
+    });
+
+    const heroData = ref(null);
     const getKittens = () => {
       axios
-        .get("http://localhost:4000/api/v1/adoptsections")
-        .then(response => (kittenImg.value = response.data[0].asset.url));
+        .get("http://localhost:4000/api/v1/adoptsections/1")
+        .then(response => (heroData.value = response.data));
     };
 
+    watch(heroData, () => (state.loading = false));
+
     return {
+      state,
       getKittens,
-      kittenImg
+      heroData
     };
   },
-  mounted() {
+  created() {
     this.getKittens();
   }
 };
