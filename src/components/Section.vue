@@ -11,9 +11,14 @@
       <h3 v-if="undertitle" class="section__undertitle">
         {{ undertitle }}
       </h3>
-      <ul class="item-list" :class="{ 'item-list_grid-auto': gridAuto }">
+      <ul
+        v-if="!noGrid"
+        class="item-list"
+        :class="{ 'item-list_grid-auto': gridAuto }"
+      >
         <slot />
       </ul>
+      <slot v-if="noGrid" />
     </div>
   </section>
 </template>
@@ -41,6 +46,11 @@ export default {
       type: String
     },
     gridAuto: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+    noGrid: {
       required: false,
       type: Boolean,
       default: false
