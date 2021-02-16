@@ -1,14 +1,16 @@
 <template>
-  <li class="card">
-    <div class="card__image-container">
-      <img class="card__image" :src="image" :alt="name" />
-    </div>
-    <div class="card__text">
-      <h3 class="card__name">{{ name }}</h3>
-      <p class="card__description">{{ description }}</p>
-      <p class="card__extra">Været på internatet i {{ age }} dage</p>
-    </div>
-  </li>
+  <router-link class="link" :to="'/details/' + id">
+    <li class="card">
+      <div class="card__image-container">
+        <img class="card__image" :src="image" :alt="name" />
+      </div>
+      <div class="card__text">
+        <h3 class="card__name">{{ name }}</h3>
+        <p class="card__description">{{ description }}</p>
+        <p class="card__extra">Været på internatet i {{ age }} dage</p>
+      </div>
+    </li>
+  </router-link>
 </template>
 
 <script>
@@ -30,6 +32,10 @@ export default {
     age: {
       required: true,
       type: String
+    },
+    id: {
+      required: true,
+      type: Number
     }
   }
 };
@@ -70,6 +76,16 @@ export default {
   &__extra {
     font-size: 0.9em;
     opacity: 0.7;
+  }
+}
+.link {
+  text-decoration: none;
+  color: #333;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.1);
   }
 }
 </style>
