@@ -37,6 +37,21 @@
       :undertitle="adoptSections[2].content"
       :image="adoptSections[2].asset.url"
     />
+    <Section
+      headline="Dyr hos os"
+      :bigHeadline="true"
+      :undertitle="animals.length + ' dyr'"
+      :grid="true"
+    >
+      <Animal
+        v-for="item in animals"
+        :key="item.id"
+        :image="item.asset.url"
+        :name="item.name"
+        :description="item.description"
+        :age="item.age.toString()"
+      />
+    </Section>
   </main>
   <main v-else><h1>Loading...</h1></main>
 </template>
@@ -51,6 +66,7 @@ import Value from "@/components/Value";
 import Card from "@/components/Card";
 import SectionImage from "@/components/SectionImage";
 import NewsletterForm from "@/components/NewsletterForm";
+import Animal from "@/components/Animal";
 
 export default {
   name: "Home",
@@ -60,7 +76,8 @@ export default {
     Value,
     Card,
     SectionImage,
-    NewsletterForm
+    NewsletterForm,
+    Animal
   },
   setup() {
     const state = reactive({
@@ -88,6 +105,13 @@ export default {
         .then(response => (adoptSections.value = response.data));
     };
 
+    const animals = ref(null);
+    const getAnimals = () => {
+      axios
+        .get("http://localhost:4000/api/v1/animals")
+        .then(response => (animals.value = response.data));
+    };
+
     const setLoading = () => {
       state.loading = false;
     };
@@ -100,6 +124,8 @@ export default {
       getVolunteers,
       adoptSections,
       getAdoptSections,
+      animals,
+      getAnimals,
       setLoading
     };
   },
@@ -107,9 +133,12 @@ export default {
     this.getAbouts();
     this.getVolunteers();
     this.getAdoptSections();
+    this.getAnimals();
   },
   mounted() {
-    this.setLoading();
+    setTimeout(() => {
+      this.setLoading();
+    }, 100);
   }
 };
 </script>

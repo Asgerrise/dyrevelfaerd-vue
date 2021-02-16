@@ -1,8 +1,17 @@
 <template>
   <section class="section" :class="{ blue: isBlue }">
     <div class="section__wrapper">
-      <h2 v-if="headline" class="section__headline">{{ headline }}</h2>
-      <ul class="item-list">
+      <h2
+        v-if="headline"
+        class="section__headline"
+        :class="{ section__headline_big: bigHeadline }"
+      >
+        {{ headline }}
+      </h2>
+      <h3 v-if="undertitle" class="section__undertitle">
+        {{ undertitle }}
+      </h3>
+      <ul class="item-list" :class="{ 'item-list_grid': grid }">
         <slot />
       </ul>
     </div>
@@ -21,6 +30,20 @@ export default {
     headline: {
       required: false,
       type: String
+    },
+    bigHeadline: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+    undertitle: {
+      required: false,
+      type: String
+    },
+    grid: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -39,6 +62,16 @@ export default {
     color: #325792;
     font-weight: 400;
     margin-bottom: 0.5em;
+
+    &_big {
+      font-size: 3.5em;
+      margin-bottom: 0em;
+    }
+  }
+  &__undertitle {
+    font-size: 1.4em;
+    font-weight: 400;
+    margin-bottom: 1.5em;
   }
   &__wrapper {
     max-width: 1200px;
@@ -50,6 +83,12 @@ export default {
   .item-list {
     display: flex;
     justify-content: space-between;
+
+    &_grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 3em 2em;
+    }
   }
 }
 </style>
