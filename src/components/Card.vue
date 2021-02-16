@@ -35,13 +35,18 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  width: 31%;
+  flex: 1;
+  margin-right: 2%;
   background: white;
   border: solid 2px #e3e3e6;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 45em;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
 
   &__title {
     font-size: 1.1em;
