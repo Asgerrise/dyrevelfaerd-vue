@@ -29,7 +29,7 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "Details" */ "../views/Login.vue")
+      import(/* webpackChunkName: "Login" */ "../views/Login.vue")
   },
   {
     path: "/admin",
@@ -46,12 +46,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.loggedIn) {
+  if (to.meta.requiresAuth) {
+    if (!store.state.user) {
+      console.log("No can do, homebrew");
       next({
         name: "Login"
       });
     } else {
+      console.log(store.state);
       next();
     }
   } else {
