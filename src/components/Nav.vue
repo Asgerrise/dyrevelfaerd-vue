@@ -7,10 +7,14 @@
       </router-link>
       <ul class="nav__links">
         <router-link to="/" class="nav__link">Hjem</router-link>
-        <router-link to="#" class="nav__link">Om os</router-link>
-        <router-link to="#" class="nav__link">Bliv Frivillig</router-link>
-        <router-link to="#" class="nav__link">Dyr i nød?</router-link>
-        <router-link to="#" class="nav__link">Adopter et dyr</router-link>
+        <router-link to="/otherpage" class="nav__link">Om os</router-link>
+        <router-link to="/otherpage" class="nav__link"
+          >Bliv Frivillig</router-link
+        >
+        <router-link to="/otherpage" class="nav__link">Dyr i nød?</router-link>
+        <router-link to="/otherpage" class="nav__link"
+          >Adopter et dyr</router-link
+        >
       </ul>
     </div>
   </nav>
