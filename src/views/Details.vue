@@ -4,6 +4,7 @@
       <img :src="data.asset.url" :alt="data.name" class="details__img" />
       <h2 class="details__name">{{ data.name }}</h2>
       <p class="details__text">{{ data.description }}</p>
+      <p class="details__extra">Været på internatet i {{ data.age }} dage</p>
     </div>
   </div>
   <div v-else>Loading...</div>
@@ -68,9 +69,15 @@ export default {
     font-size: 3em;
     color: #325792;
     font-weight: 400;
+    margin-bottom: 0.5em;
   }
   &__text {
     font-size: 1.4em;
+    margin-bottom: 2em;
+  }
+  &__extra {
+    font-size: 1em;
+    opacity: 0.7;
   }
 }
 </style>
