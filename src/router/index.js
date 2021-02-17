@@ -53,7 +53,6 @@ router.beforeEach((to, from, next) => {
         name: "Login"
       });
     } else {
-      console.log(store.state);
       next();
     }
   } else {
