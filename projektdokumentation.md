@@ -14,7 +14,7 @@ npm run serve
 ```
 
 URL til login-siden: <br/>
-http://localhost:8080/login
+http://localhost:8080/#/login
 
 **Brugernavn:** admin <br/>
 **Password:** 1234
