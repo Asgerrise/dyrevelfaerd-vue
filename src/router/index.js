@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import store from "@/store/index.js";
 import Home from "../views/Home.vue";
 
 const routes = [
@@ -10,7 +11,8 @@ const routes = [
   {
     path: "/subscribed",
     name: "Subscribed",
-    component: () => import("../views/Subscribed.vue")
+    component: () =>
+      import(/* webpackChunkName: "Subscribed" */ "../views/Subscribed.vue")
   },
   {
     path: "/otherpage",
@@ -20,13 +22,43 @@ const routes = [
   {
     path: "/details/:id",
     name: "Details",
-    component: () => import("../views/Details.vue")
+    component: () =>
+      import(/* webpackChunkName: "Details" */ "../views/Details.vue")
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "Login" */ "../views/Login.vue")
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: () =>
+      import(/* webpackChunkName: "Admin" */ "../views/Admin.vue"),
+    meta: { requiresAuth: true }
   }
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (!store.state.user) {
+      console.log("No can do, homebrew");
+      next({
+        name: "Login"
+      });
+    } else {
+      console.log(store.state);
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
