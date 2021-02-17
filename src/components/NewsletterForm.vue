@@ -27,6 +27,8 @@
 const axios = require("axios");
 import { ref, watch, reactive } from "vue";
 
+import router from "@/router/index.js";
+
 export default {
   name: "NewsletterForm",
 
@@ -49,21 +51,24 @@ export default {
     };
 
     watch(token, () => {
-      axios
-        .get("http://localhost:4000/api/v1/subscribers", {
-          headers: { Authorization: `Bearer ${token.value}` }
-        })
-        .then(response => console.log(response));
+      axios.get("http://localhost:4000/api/v1/subscribers", {
+        headers: { Authorization: `Bearer ${token.value}` }
+      });
     });
 
     const subscribe = () => {
       if (state.email === "") {
         state.status = "Udfyld venligst email";
-
         return;
       }
-      if (state.name === "") {
-        window.alert("Udfyld navn");
+      const atpos = state.email.indexOf("@");
+      const dotpos = state.email.lastIndexOf(".");
+      if (atpos < 1 || dotpos < atpos + 2 || state.email.length <= dotpos + 2) {
+        state.status = "Skriv en gyldig e-mail adresse";
+        return;
+      }
+      if (state.name === "" || state.name.length < 2) {
+        state.status = "Skriv dit navn";
         return;
       } else {
         axios
@@ -73,18 +78,17 @@ export default {
           .then(response => {
             response.data.find(subscriber => {
               if (subscriber.email === state.email) {
-                window.alert("Denne email er allerede tilmeldt");
+                state.status = "Denne email adresse er allerede tilmeldt";
+                return;
               } else {
                 axios
                   .post(
                     "http://localhost:4000/api/v1/subscribers",
                     `name=admin&email=${state.email}`
                   )
-                  .then(response => {
-                    window.alert("Du er nu tilmeldt!");
-                    console.log(response);
-                  })
-                  .catch(err => console.error(err));
+                  .then(() => {
+                    router.push("/subscribed");
+                  });
               }
             });
           });
