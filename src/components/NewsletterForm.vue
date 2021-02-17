@@ -18,7 +18,20 @@
         v-model="state.name"
       />
     </div>
-    <p class="newsletter__status">{{ state.status }}</p>
+    <p
+      :class="{ newsletter__status_green: state.green }"
+      class="newsletter__status"
+    >
+      {{ state.status }}
+    </p>
+
+    <button
+      class="newsletter__button newsletter__button_red"
+      type="button"
+      @click="unsubscribe()"
+    >
+      Afmeld
+    </button>
     <button class="newsletter__button" type="submit">Tilmeld</button>
   </form>
 </template>
@@ -36,7 +49,8 @@ export default {
     const state = reactive({
       email: "",
       name: "",
-      status: ""
+      status: "",
+      green: false
     });
 
     const token = ref(null);
@@ -57,6 +71,7 @@ export default {
     });
 
     const subscribe = () => {
+      state.green = false;
       if (state.email === "") {
         state.status = "Udfyld venligst email";
         return;
@@ -71,6 +86,7 @@ export default {
         state.status = "Skriv dit navn";
         return;
       } else {
+        state.status = "";
         axios
           .get("http://localhost:4000/api/v1/subscribers", {
             headers: { Authorization: `Bearer ${token.value}` }
@@ -95,10 +111,35 @@ export default {
       }
     };
 
+    const unsubscribe = () => {
+      state.green = false;
+      if (state.email === "") {
+        state.status = "Udfyld venligst email";
+        return;
+      }
+      const atpos = state.email.indexOf("@");
+      const dotpos = state.email.lastIndexOf(".");
+      if (atpos < 1 || dotpos < atpos + 2 || state.email.length <= dotpos + 2) {
+        state.status = "Skriv en gyldig e-mail adresse";
+        return;
+      } else {
+        state.status = "";
+        axios
+          .delete(`http://localhost:4000/api/v1/subscribers/${state.email}`)
+          .then(response => {
+            console.log(response);
+            state.status = "Du er nu afmeldt";
+            state.green = true;
+          })
+          .catch(err => console.error(err));
+      }
+    };
+
     return {
       state,
       getToken,
-      subscribe
+      subscribe,
+      unsubscribe
     };
   },
 
@@ -138,6 +179,10 @@ export default {
     text-align: left;
     margin-left: 0.5em;
     color: red;
+
+    &_green {
+      color: green;
+    }
   }
   &__button {
     font-family: "Oswald", sans-serif;
@@ -147,7 +192,12 @@ export default {
     padding: 0.5em 1em;
     color: white;
     border-radius: 5px;
+    margin-left: 0.5em;
     cursor: pointer;
+
+    &_red {
+      background-color: rgb(156, 24, 24);
+    }
   }
 }
 </style>
