@@ -17,7 +17,6 @@
     <textarea
       rows="8"
       v-if="contentInput"
-      type="text"
       id="content"
       name="content"
       class="create-form__input create-form__input_area"
