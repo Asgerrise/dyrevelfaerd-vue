@@ -3,41 +3,61 @@
     <div class="admin__wrapper">
       <h2 class="admin__title">Administrations panel</h2>
       <p class="admin__undertitle">Velkommen {{ $store.state.user }}!</p>
-
-      <CreateForm
-        subject="Opret ny adopt sektion"
-        titleInput="Titel"
-        contentInput="Indhold"
-      />
-      <CreateForm
-        subject="Opret nyt 'about' afsnit"
-        titleInput="Titel"
-        contentInput="Indhold"
-      />
-      <CreateForm
-        subject="Opret nyt dyr"
-        titleInput="Titel"
-        contentInput="Indhold"
-        ageInput="Dage på internat"
-      />
-      <CreateForm subject="Upload billede" fileInput="Billede" />
-      <CreateForm
-        subject="Opret ny frivillig position"
-        titleInput="Titel"
-        contentInput="Indhold"
-        extraInput="Ekstra"
-      />
+      <section class="admin__section">
+        <CreateForm
+          subject="Opret ny adopt sektion"
+          titleInput="Titel"
+          contentInput="Indhold"
+          :adoptsection="true"
+          endpoint="adoptsections"
+        />
+        <DeleteForm subject="Slet adopt sektion" endpoint="adoptsections" />
+      </section>
+      <section class="admin__section">
+        <CreateForm
+          subject="Opret nyt 'about' afsnit"
+          titleInput="Titel"
+          contentInput="Indhold"
+          :about="true"
+          endpoint="abouts"
+        />
+        <DeleteForm subject="Slet 'about' afsnit" endpoint="abouts" />
+      </section>
+      <section class="admin__section">
+        <CreateForm
+          subject="Opret nyt dyr"
+          titleInput="Titel"
+          contentInput="Indhold"
+          ageInput="Dage på internat"
+          :animal="true"
+          endpoint="animals"
+        />
+        <DeleteForm subject="Slet et dyr" endpoint="animals" />
+      </section>
+      <section class="admin__section">
+        <CreateForm
+          subject="Opret ny frivillig position"
+          titleInput="Titel"
+          contentInput="Indhold"
+          extraInput="Ekstra"
+          :volunteer="true"
+          endpoint="volunteers"
+        />
+        <DeleteForm subject="Slet frivillig position" endpoint="volunteers" />
+      </section>
     </div>
   </main>
 </template>
 
 <script>
 import CreateForm from "@/components/CreateForm";
+import DeleteForm from "@/components/DeleteForm";
 
 export default {
   name: "Admin",
   components: {
-    CreateForm
+    CreateForm,
+    DeleteForm
   }
 };
 </script>
@@ -60,6 +80,17 @@ export default {
   }
   &__undertitle {
     font-size: 1.3em;
+  }
+  &__section {
+    border-top: 2px solid #eee;
+    padding: 2em 0;
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and(max-width: 700px) {
+      flex-direction: column;
+    }
   }
 }
 </style>

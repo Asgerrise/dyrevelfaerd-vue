@@ -63,6 +63,10 @@ export default {
   &__text {
     flex: 2;
     padding: 1em;
+    min-height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   &__name {
     font-size: 1.4em;

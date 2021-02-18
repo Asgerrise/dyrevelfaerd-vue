@@ -50,9 +50,9 @@
         v-for="item in animals"
         :key="item.id"
         :image="item.asset.url"
-        :name="item.name"
-        :description="item.description"
-        :age="item.age.toString()"
+        :name="item.name ? item.name : 'Placeholder'"
+        :description="item.description ? item.description : 'Placeholder'"
+        :age="item.age ? item.age.toString() : '10'"
         :id="item.id"
       />
     </Section>
