@@ -38,9 +38,10 @@
 
 <script>
 const axios = require("axios");
-import { ref, watch, reactive } from "vue";
+import { reactive } from "vue";
 
 import router from "@/router/index.js";
+import store from "@/store/index.js";
 
 export default {
   name: "NewsletterForm",
@@ -50,27 +51,11 @@ export default {
       email: "",
       name: "",
       status: "",
-      green: false
+      green: false,
+      token: store.state.token
     });
 
-    const token = ref(null);
-    const getToken = () => {
-      axios
-        .post(
-          "http://localhost:4000/auth/token",
-          "username=admin&password=1234"
-        )
-        .then(response => (token.value = response.data.token))
-        .catch(err => console.error(err));
-    };
-
-    watch(token, () => {
-      axios.get("http://localhost:4000/api/v1/subscribers", {
-        headers: { Authorization: `Bearer ${token.value}` }
-      });
-    });
-
-    const subscribe = () => {
+    const subscribe = async () => {
       state.green = false;
       if (state.email === "") {
         state.status = "Udfyld venligst email";
@@ -89,7 +74,7 @@ export default {
         state.status = "";
         axios
           .get("http://localhost:4000/api/v1/subscribers", {
-            headers: { Authorization: `Bearer ${token.value}` }
+            headers: { Authorization: `Bearer ${state.token}` }
           })
           .then(response => {
             response.data.find(subscriber => {
@@ -137,14 +122,9 @@ export default {
 
     return {
       state,
-      getToken,
       subscribe,
       unsubscribe
     };
-  },
-
-  mounted() {
-    this.getToken();
   }
 };
 </script>

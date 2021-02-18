@@ -8,6 +8,10 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
+import store from "@/store/index.js";
+
+store.dispatch("getToken");
+
 export default {
   name: "App",
   components: {

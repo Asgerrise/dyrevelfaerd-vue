@@ -57,7 +57,7 @@
       />
     </Section>
   </main>
-  <main v-else><h1>Loading...</h1></main>
+  <main v-else><h1 class="loading">Loading...</h1></main>
 </template>
 
 <script>
@@ -144,6 +144,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
 .newsletter__text {
   flex: 1;
 }
