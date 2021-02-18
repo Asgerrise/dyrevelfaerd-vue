@@ -39,7 +39,7 @@ export default {
 
     const login = () =>
       store.commit({
-        type: "login",
+        type: "LOGIN",
         username: state.username,
         password: state.password
       });
