@@ -43,3 +43,9 @@ Layoutet til login/admin/kvitteringssiden har jeg lagt meget opad det udleverede
 ## Tredjepartskode
 
 Jeg har brugt <a href="https://antoniandre.github.io/vueper-slides/"> Vueperslides </a> til min slider. Jeg startede først med at lave min egen, men så slog det mig, at jeg ligeså godt kunne finde en fed tredjeparts-løsning, der virkede med Vue. Jeg har klart tænkt mig at bruge denne npm pakke igen, hvis jeg støder på samme udfordring på et senere tidspunkt!
+
+<br/>
+
+## Ekstra
+
+Jeg får NOGLE GANGE en fejl i konsollen på hovedsiden, der siger, at property "1" of null ikke kan læses. Gætter på det har noget at gøre med indlæsningsprioriteten af mine fetches. Men fejlen gør intet, fordi komponentet re-render når data er hentet. Har prøvet mange forskellige lifecycle methods med en "loading" variable og har også prøvet setTimeout osv. Intet har fjernet fejlen.. Siden den ikke gør noget, har jeg valgt at ignorere den.
