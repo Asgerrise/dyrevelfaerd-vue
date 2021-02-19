@@ -40,7 +40,7 @@ export default {
     });
 
     const login = () => {
-      if (state.username !== "admin" && state.password !== "1234") {
+      if (state.username !== "admin" || state.password !== "1234") {
         state.status = "Ugyldigt login";
         state.username = "";
         state.password = "";
