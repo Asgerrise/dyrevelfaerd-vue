@@ -19,6 +19,7 @@
           name="password"
           class="login__input"
         />
+        <p class="login__status">{{ state.status }}</p>
         <button class="login__button" type="submit">Log in</button>
       </form>
     </div>
@@ -34,15 +35,23 @@ export default {
   setup() {
     const state = reactive({
       username: "",
-      password: ""
+      password: "",
+      status: ""
     });
 
-    const login = () =>
+    const login = () => {
+      if (state.username !== "admin" && state.password !== "1234") {
+        state.status = "Ugyldigt login";
+        state.username = "";
+        state.password = "";
+        return;
+      }
       store.commit({
         type: "LOGIN",
         username: state.username,
         password: state.password
       });
+    };
 
     return {
       state,
@@ -88,6 +97,9 @@ export default {
     border-radius: 5px;
     border: 1px solid #9c9c9c;
     margin-bottom: 1em;
+  }
+  &__status {
+    color: red;
   }
   &__button {
     margin-top: auto;
