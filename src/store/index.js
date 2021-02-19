@@ -5,7 +5,8 @@ const axios = require("axios");
 export default createStore({
   state: {
     user: null,
-    token: null
+    token: null,
+    showAllAnimals: false
   },
   mutations: {
     LOGIN(state, payload) {
@@ -18,6 +19,9 @@ export default createStore({
     },
     SET_TOKEN(state, token) {
       state.token = token;
+    },
+    SET_SHOW_ALL_ANIMALS(state) {
+      state.showAllAnimals = !state.showAllAnimals;
     }
   },
   actions: {

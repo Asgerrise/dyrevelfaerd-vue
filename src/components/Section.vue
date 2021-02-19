@@ -19,11 +19,17 @@
         <slot />
       </ul>
       <slot v-if="noGrid" />
+      <button v-if="button" class="button" @click="showHideAnimals">
+        {{ buttonText }}
+      </button>
     </div>
   </section>
 </template>
 
 <script>
+import store from "@/store/index.js";
+import { computed } from "vue";
+
 export default {
   name: "Section",
   props: {
@@ -54,7 +60,26 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    button: {
+      required: false,
+      type: Boolean,
+      default: false
     }
+  },
+  setup() {
+    const buttonText = computed(() =>
+      store.state.showAllAnimals ? "Vis færre dyr" : "Vis alle dyr"
+    );
+
+    const showHideAnimals = () => {
+      store.commit("SET_SHOW_ALL_ANIMALS");
+    };
+
+    return {
+      buttonText,
+      showHideAnimals
+    };
   }
 };
 </script>
@@ -104,6 +129,18 @@ export default {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       }
     }
+  }
+  .button {
+    margin: 2em auto 1em;
+    display: block;
+    font-family: "Oswald", sans-serif;
+    font-size: 1em;
+    background-color: #325792;
+    border: none;
+    padding: 0.5em 1em;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
   }
 }
 </style>
