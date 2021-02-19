@@ -45,9 +45,10 @@
       :bigHeadline="true"
       :undertitle="animals.length + ' dyr'"
       :gridAuto="true"
+      :button="true"
     >
       <Animal
-        v-for="item in animals"
+        v-for="item in shownAnimals"
         :key="item.id"
         :image="item.asset.url"
         :name="item.name ? item.name : 'Placeholder'"
@@ -61,7 +62,7 @@
 </template>
 
 <script>
-import { ref, reactive, watch } from "vue";
+import { ref, reactive, watch, computed } from "vue";
 const axios = require("axios");
 
 import Hero from "@/components/Hero";
@@ -72,6 +73,8 @@ import SectionImage from "@/components/SectionImage";
 import NewsletterForm from "@/components/NewsletterForm";
 import Animal from "@/components/Animal";
 import Slider from "@/components/Slider.vue";
+
+import store from "@/store/index.js";
 
 export default {
   name: "Home",
@@ -112,6 +115,9 @@ export default {
     };
 
     const animals = ref(null);
+    const shownAnimals = computed(() =>
+      store.state.showAllAnimals ? animals.value : animals.value.slice(0, 8)
+    );
     const getAnimals = () => {
       axios
         .get("http://localhost:4000/api/v1/animals")
@@ -129,6 +135,7 @@ export default {
       adoptSections,
       getAdoptSections,
       animals,
+      shownAnimals,
       getAnimals
     };
   },
