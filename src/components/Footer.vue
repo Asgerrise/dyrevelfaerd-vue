@@ -16,12 +16,17 @@
       <ul class="footer__column">
         <h2 class="footer__column-title">PARTNERE</h2>
         <li class="footer__item">
-          <a href="https://anima.dk/" target="_blank" class="footer__link"
+          <a
+            href="https://anima.dk/"
+            rel="noopener"
+            target="_blank"
+            class="footer__link"
             >Anima</a
           >
         </li>
         <li class="footer__item">
           <a
+            rel="noopener"
             href="https://www.worldanimalprotection.dk/"
             target="_blank"
             class="footer__link"
@@ -30,6 +35,7 @@
         </li>
         <li class="footer__item">
           <a
+            rel="noopener"
             href="https://www.foedevarestyrelsen.dk/Sider/forside.aspx"
             target="_blank"
             class="footer__link"
@@ -37,7 +43,11 @@
           >
         </li>
         <li class="footer__item">
-          <a href="https://faktalink.dk/" target="_blank" class="footer__link"
+          <a
+            href="https://faktalink.dk/"
+            rel="noopener"
+            target="_blank"
+            class="footer__link"
             >Faktalink</a
           >
         </li>

@@ -6,15 +6,27 @@
         <h1 class="nav__logo-text">Foreningen for Dyrevelfærd</h1>
       </router-link>
       <ul class="nav__links">
-        <router-link to="/" class="nav__link">Hjem</router-link>
-        <router-link to="/otherpage" class="nav__link">Om os</router-link>
-        <router-link to="/otherpage" class="nav__link"
-          >Bliv Frivillig</router-link
-        >
-        <router-link to="/otherpage" class="nav__link">Dyr i nød?</router-link>
-        <router-link to="/otherpage" class="nav__link"
-          >Adopter et dyr</router-link
-        >
+        <li class="nav__link-item">
+          <router-link to="/" class="nav__link">Hjem</router-link>
+        </li>
+        <li class="nav__link-item">
+          <router-link to="/otherpage" class="nav__link">Om os</router-link>
+        </li>
+        <li class="nav__link-item">
+          <router-link to="/otherpage" class="nav__link"
+            >Bliv Frivillig</router-link
+          >
+        </li>
+        <li class="nav__link-item">
+          <router-link to="/otherpage" class="nav__link"
+            >Dyr i nød?</router-link
+          >
+        </li>
+        <li class="nav__link-item">
+          <router-link to="/otherpage" class="nav__link"
+            >Adopter et dyr</router-link
+          >
+        </li>
       </ul>
     </div>
   </nav>
@@ -69,17 +81,19 @@ export default {
   &__links {
     display: flex;
     align-items: center;
+    list-style: none;
 
     @media screen and(max-width: 520px) {
       flex-direction: column;
       margin-top: 1em;
     }
   }
-
+  &__link-item {
+    margin-left: 1em;
+  }
   &__link {
     text-decoration: none;
     color: #333;
-    margin-left: 1em;
     opacity: 0.5;
     white-space: nowrap;
     transition: 0.2s;
