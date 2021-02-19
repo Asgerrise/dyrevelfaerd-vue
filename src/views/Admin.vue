@@ -8,6 +8,7 @@
           subject="Opret ny adopt sektion"
           titleInput="Titel"
           contentInput="Indhold"
+          imageInput="Billede"
           :adoptsection="true"
           endpoint="adoptsections"
         />
@@ -29,6 +30,7 @@
           titleInput="Titel"
           contentInput="Indhold"
           ageInput="Dage på internat"
+          imageInput="Billede"
           :animal="true"
           endpoint="animals"
         />
@@ -36,10 +38,19 @@
       </section>
       <section class="admin__section">
         <CreateForm
+          subject="Opret nyt billede"
+          fileInput="Vælg fil"
+          :asset="true"
+          endpoint="assets"
+        />
+      </section>
+      <section class="admin__section">
+        <CreateForm
           subject="Opret ny frivillig position"
           titleInput="Titel"
           contentInput="Indhold"
           extraInput="Ekstra"
+          imageInput="Billede"
           :volunteer="true"
           endpoint="volunteers"
         />
