@@ -5,20 +5,14 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run local server
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Admin panel
 
-### Lints and fixes files
-```
-npm run lint
-```
+http://localhost:8080/#/admin
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Username: admin
+Password: 1234
