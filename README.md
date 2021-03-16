@@ -1,4 +1,4 @@
-# terminsprove-asgerrise
+# Dyrevelfærd
 
 ## Project setup
 ```
