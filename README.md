@@ -14,5 +14,5 @@ npm run serve
 
 http://localhost:8080/#/admin
 
-Username: admin
+Username: admin </br>
 Password: 1234
